@@ -114,12 +114,13 @@ $ sudo nano /etc/hosts
 
 A directory is what you know as a folder.
 
-You can see your current working directory (the one you are "in") with `pwd`.
+You can see your **current working directory** (the one you are "in") with `pwd`.
 
-You can change your working directory with `cd`.
+### Change your working directory with `cd`.
 
 ```sh
 $ pwd
+/Users/yourusername/momentum/somedirectory
 $ cd directory_name
 ```
 
@@ -133,7 +134,7 @@ Several special characters are used for shortcuts in navigating the file structu
 
 - The forward slash `/` by itself represents the root directory.
 
-- The tilde `~` represents the home directory.
+- The tilde `~` represents the home directory. This directory is named after your computer's user.
 
 Try these out for yourself!
 
@@ -159,30 +160,35 @@ $ ls -al
 ```sh
 $ mkdir new_directory
 $ rmdir empty_directory
+$ mkdir -p code/dev # the -p flag lets you create nested directories
 $ rm -rf directory_full_of_stuff # watch out!
 ```
 
 ## Exercise
 
-Let’s practice using the command line! Don’t forget about using the arrow keys to find previously typed commands.
+Let’s practice using the command line! Don’t forget about using the arrow keys to find previously typed commands, and look up in these notes when you need guidance about how to do something.
 
-1. Navigate to your home directory
+1. Navigate to your home directory.
 
-2. Create a `momentum/class` directory path
+2. Create a directory named `momentum` in your home directory.
 
-3. Navigate to that directory
+3. Navigate into to the `momentum` directory.
 
-4. Create a directory named `command-line` here
+4. Create nested directories here so that you have a path like `dev/commandline`
 
-5. Navigate up two directories
+5. Navigate into the `commandline` directory.
 
-6. Explore around your directories, viewing their contents with `ls`
+6. How would you get back to the `momentum` directory from here?
 
-7. Return to your home directory
+7. Explore around your directories, viewing their contents with `ls`. Try out some of the options that you can use with `ls`.
 
-8. Verify what your current working directory is (hint: use `pwd`)
+8. Return to your home directory
 
-9. Remove the `momentum/class/command-line` path
+9. In your home directory, try `ls -a` to see dotfiles along with the directories and files there.
+
+10. Verify what your current working directory is (hint: use `pwd`)
+
+11. Remove the `dev` and `command-line` directories.
 
 ## Paths
 
@@ -212,7 +218,7 @@ $ cd ../study_notes
 
 ## $PATH
 
-One or more pathnames, delimited by colons, in which to search for commands to execute.
+One or more pathnames, delimited by colons, that your shell uses to find the commands you type.
 
 ```sh
 $ echo $PATH
@@ -268,7 +274,7 @@ This doesn’t clear your command history; it just makes your screen look neater
 
 ## Exercise
 
-Let’s practice working with files from the command line.
+Let’s practice working with files from the command line. You don't need to do this from memory. Use these notes to look up how to do things!
 
 1. Create a new directory called `cli-practice` and make that your working directory.
 
