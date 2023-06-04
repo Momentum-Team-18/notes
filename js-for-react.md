@@ -6,6 +6,111 @@ To work with React, it really helps to be comfortable with certain features of J
 
 ---
 
+## Arrow Functions
+
+Arrow function syntax is another way to declare functions, without using the `function` keyword. They're useful for short one-liners and using functions as arguments to other functions. 
+
+When using arrow functions, it's important to declare them before you want to use them (which you don't have to do with the function keyword syntax because of a feature of the JavaScript language called _hoisting_).
+
+Here's the function syntax you are familiar with:
+
+```js
+function addOne(num) {
+  return num + 1
+}
+addOne(5) // returns 6
+```
+
+Now let's make that into an arrow function.
+
+```js
+const addOne = (num) => num + 1
+addOne(5) // returns 6
+```
+
+Not so bad. Notice a couple things:
+
+- We got rid of the curly brackets! 🙌
+- Single-line arrow functions have an _implicit return_, which means we can leave out the `return` keyword and still get a return value
+- To give it a name so you can call it later, you have to use a variable and assign the arrow function as its value
+- It does the same thing that the first function does
+
+There are a few ways that this syntax varies, which can be confusing when you are first learning arrow functions. Here are the variations you need to recognize.
+
+### Arrow functions with multiple arguments
+
+You can omit the parens around a single parameter like so:
+
+```js
+const addOne = num => num + 1
+addOne(5) // returns 6
+```
+
+Not having to include the parens can make callback functions easier to read, so it's an option that some folks really like:
+
+```js
+element.addEventListener("click", e => e.target.classList.add("hidden"))
+```
+
+But...you can't omit the parens if you have more than one parameter:
+
+```js
+const add = num, addToNum => num + addToNum // ❌ WRONG! Throws an error
+```
+
+With more than one parameter, you need the parens:
+
+```js
+const add = (num, addToNum) => num + addToNum
+```
+
+To sum up: it's always right to put parens around arguments to an arrow function. You can leave them out in some cases but not in others. It's a style choice up to the developer or their team.
+
+### Arrow functions with multiple lines
+
+If we have to do more stuff than we can fit on one line, we have options.
+
+You can use curly brackets around the arrow function body if it spans multiple lines. If you do this, however, watch out! You can't have implicit return with the curly brackets, so you need to use the `return` keyword.
+
+```js
+// 🚫 This won't throw an error -- it will just return undefined, which is WAY WORSE! Can cause a hard to find bug.
+const double = (num) => {
+  num * 2
+}
+```
+
+With curly brackets, to get back the value we want, we need to use the `return` keyword:
+
+```js
+// 👍 This will work
+const double = (num) => {
+  return num * 2
+}
+```
+
+And...we _could_ omit the return keyword if we just replace the curly brackets with parens! You'll see this syntax a lot in React.
+
+```js
+const double = (num) => (
+  num * 2  // no return keyword needed because those are PARENS around the funciton body!
+)
+
+// But when a function is so short it really should be a one liner...
+const double = num => num * 2
+
+```
+
+So...if we want to take advantage of the implicit return when the arrow function is more than one line, we need to use parens around the function body.
+
+```js
+const greetByGroup = (names, firstLetter) => (
+  names.filter(name => name[0].toLowerCase() === firstLetter.toLowerCase())
+       .map(name => `You're in the ${firstLetter.toUpperCase()} group, ${name}!`)
+)
+```
+
+---
+
 ## Template Literals
 
 The template literal syntax is a way to compose strings with bits that are evaluated by JavaScript. It's a more concise alternative to string concatenation (appending strings one after another).
@@ -46,68 +151,6 @@ function formatAddress(number, street) {
   // this gives me the same object with the same keys and values as above
   // ...do other stuff
 }
-```
-
----
-
-## Arrow Functions
-
-Arrow function syntax gives us another way to declare functions without using the function keyword. They are especially useful for anonymous functions and short one-liners. When using arrow functions, it's important to declare the functions before you want to use them (which you don't have to do with the function keyword syntax because of a feature called _hoisting_).
-
-```js
-// conventional function keyword syntax to declare a function
-function addOne(num){
-  return num + 1
-}
-addOne(5) // returns 6
-
-// arrow function syntax
-// has an implicit return, which means we can leave out the "return" keyword
-const addOne = (num) => num + 1
-addOne(5) // returns 6
-
-// You could also omit the parens around the parameter like so
-const addOne = num => num + 1
-addOne(5) // returns 6
-
-// But that would not work if you had more than one parameter
-const add = num, addToNum => num + addToNum // WRONG! Throws an error
-// With more than one parameter you need the parens
-const add = (num, addToNum) => num + addToNum
-
-// This is really nice when you want to write a callback function
-const incrementedScores = scores.map(num => num + 1)
-
-// more examples!
-// What if we have to do more stuff than we can fit on one line?
-// If we want to take advantage of the implicit return, we need to use parens around the function body
-const greetByGroup = (names, firstLetter) => (
-  names.filter(name => name[0].toLowerCase() === firstLetter.toLowerCase())
-       .map(name => `You're in the ${firstLetter.toUpperCase()} group, ${name}!`)
-)
-
-// You can use curly brackets around the arrow function body,
-// but if you do, you can't have implicit return, so you need to use the return keyword.
-
-// This will just return undefined
-const double = (num) => {
-  num * 2
-}
-
-// To get back the value we want we'll need to use the return keyword if we use the curly brackets
-const double = (num) => {
-  return num * 2
-}
-
-// we could omit the return keyword if we just replace the curly brackets with parens!
-// you'll see this syntax a lot in React
-const double = (num) => (
-  num * 2
-)
-
-// As a one liner...
-const double = num => num * 2
-
 ```
 
 ---
